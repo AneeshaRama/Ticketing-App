@@ -1,40 +1,49 @@
 import mongoose from "mongoose";
-import { Password } from "../utils/password";
+import {Password} from "../utils/password"
 
-// defining required user attributes
 interface UserAttributes{
-    username: string
-    email: string,
-    password: string
-}
-
-interface UserModel extends mongoose.Model<UserDoc>{
-    build(attributes: UserAttributes):UserDoc;
-}
-
-interface UserDoc extends mongoose.Document{
+    username:string,
     email:string,
     password:string
 }
 
+interface UserDoc extends mongoose.Document{
+    username:string,
+    email:string,
+    password:string
+}
+
+interface UserModel extends mongoose.Model<UserDoc>{
+    build(attributes: UserAttributes): UserDoc
+}
+
 const userSchema = new mongoose.Schema({
-    username:{
+    username: {
         type:String,
         required:true,
         trim:true
     },
-    email:{
+    email: {
         type:String,
         required:true,
         trim:true
     },
-    password:{
+    password: {
         type:String,
         required:true,
     },
+
+},{
+    toJSON:{
+        transform(doc,ret){
+            ret.id = ret._id
+            delete ret._id;
+            delete ret.password
+            delete ret.__v
+        }
+    }
 })
 
-// hashing the password before storing in the database
 userSchema.pre("save", async function(done){
     if(this.isModified("password")){
         const hashed = await Password.toHash(this.get("password"))
@@ -44,7 +53,10 @@ userSchema.pre("save", async function(done){
 })
 
 userSchema.statics.build = (attributes: UserAttributes)=>{
-    return new User(attributes)
+    return new User(attributes);
 }
 
-export const User = mongoose.model<UserDoc, UserModel>("user", userSchema)
+export const User = mongoose.model<UserDoc, UserModel>("user", userSchema);
+
+
+
