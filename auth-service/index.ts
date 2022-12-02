@@ -4,9 +4,9 @@ import cors from "cors"
 import {json} from "body-parser"
 import dotenv from "dotenv"
 import cookieSession from "cookie-session"
-import { connectDatabase } from "./utils/database"
-import { signupRouter } from "./routes/signupRoute"
-import { errorHandler } from "./middlewares/errorHandler"
+import { connectDatabase } from "./src/utils/database"
+import { signupRouter } from "./src/routes/signupRoute"
+import { errorHandler } from "./src/middlewares/errorHandler"
 
 const app = express()
 dotenv.config()
