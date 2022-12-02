@@ -7,6 +7,9 @@ import cookieSession from "cookie-session"
 import { connectDatabase } from "./src/utils/database"
 import { signupRouter } from "./src/routes/signupRoute"
 import { errorHandler } from "./src/middlewares/errorHandler"
+import { NotFoundError } from "./src/errors/notFoundError"
+import { signinRouter } from "./src/routes/signinRoute"
+import { signoutRouter } from "./src/routes/signoutRoute"
 
 const app = express()
 dotenv.config()
@@ -23,6 +26,12 @@ app.use(cookieSession({
 
 // routes
 app.use(signupRouter)
+app.use(signinRouter)
+app.use(signoutRouter)
+
+app.all("*", async (req,res)=>{
+    throw new NotFoundError("Page not found")
+})
 
 // error handler
 app.use(errorHandler)
