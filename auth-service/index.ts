@@ -10,6 +10,7 @@ import { errorHandler } from "./src/middlewares/errorHandler"
 import { NotFoundError } from "./src/errors/notFoundError"
 import { signinRouter } from "./src/routes/signinRoute"
 import { signoutRouter } from "./src/routes/signoutRoute"
+import { currentUserRouter } from "./src/middlewares/currentUserRoute"
 
 const app = express()
 dotenv.config()
@@ -28,6 +29,7 @@ app.use(cookieSession({
 app.use(signupRouter)
 app.use(signinRouter)
 app.use(signoutRouter)
+app.use(currentUserRouter)
 
 app.all("*", async (req,res)=>{
     throw new NotFoundError("Page not found")
