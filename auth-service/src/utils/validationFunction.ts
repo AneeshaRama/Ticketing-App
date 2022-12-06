@@ -1,4 +1,4 @@
-import { RequestValidationError } from "../errors/requestValidationError"
+import { RequestValidationError } from "@jamesmary/ticket-app-common"
 
 export const signupValidation = (username:string, email:string, password:string)=>{
     if(!username || !email || !password){

@@ -6,11 +6,11 @@ import dotenv from "dotenv"
 import cookieSession from "cookie-session"
 import { connectDatabase } from "./src/utils/database"
 import { signupRouter } from "./src/routes/signupRoute"
-import { errorHandler } from "./src/middlewares/errorHandler"
-import { NotFoundError } from "./src/errors/notFoundError"
+import { errorHandler } from "@jamesmary/ticket-app-common"
+import { NotFoundError } from "@jamesmary/ticket-app-common"
 import { signinRouter } from "./src/routes/signinRoute"
 import { signoutRouter } from "./src/routes/signoutRoute"
-import { currentUserRouter } from "./src/middlewares/currentUserRoute"
+import { currentUserRouter } from "./src/routes/currentUserRoute"
 
 const app = express()
 dotenv.config()

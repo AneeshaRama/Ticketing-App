@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { BadRequestError } from "../errors/badRequestError";
+import { BadRequestError } from "@jamesmary/ticket-app-common";
 import { User } from "../models/userModel";
 import { signupValidation } from "../utils/validationFunction";
 import jwt from "jsonwebtoken"

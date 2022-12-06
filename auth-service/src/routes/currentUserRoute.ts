@@ -1,6 +1,6 @@
 import express from "express"
 import { signedInUser } from "../controllers/currentUserController"
-import { currentUser } from "./currentUser"
+import { currentUser } from "@jamesmary/ticket-app-common"
 
 const router = express.Router()
 
