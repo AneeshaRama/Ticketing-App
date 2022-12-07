@@ -10,6 +10,7 @@ import { NotFoundError } from "@jamesmary/ticket-app-common"
 import { createTicketRouter } from "./routes/createTicketRoute"
 import { getTicketsRouter } from "./routes/getTicketsRoute"
 import { getTicketRouter } from "./routes/getTicketRoute"
+import { updateTicketRouter } from "./routes/updateTicket"
 
 
 const app = express()
@@ -29,6 +30,7 @@ app.use(cookieSession({
 app.use(createTicketRouter)
 app.use(getTicketsRouter)
 app.use(getTicketRouter)
+app.use(updateTicketRouter)
 
 app.all("*", async (req,res)=>{
     throw new NotFoundError("Page not found")
